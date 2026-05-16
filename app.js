@@ -3,9 +3,7 @@ const supabaseKey = 'sb_publishable_COo144VrJvkkyvNSzMD6pA_9qRgCkg9';
 const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 let currentUser = null;
-let isPremiumUser = false; // Wird aus der DB geladen
 
-// Beim Laden der Seite direkt den Login-Status prüfen
 window.onload = async function() {
     checkUserSession();
     loadTournaments();
@@ -17,12 +15,11 @@ function showSection(id) {
     document.getElementById(id).classList.add('active');
 }
 
-// === AUTHENTIFIZIERUNG (DISCORD) ===
+// === DISCORD LOGIN ===
 async function loginWithDiscord() {
     const { data, error } = await _supabase.auth.signInWithOAuth({
         provider: 'discord',
         options: {
-            // Leitet den User nach dem Login zurück auf deine GitHub Page
             redirectTo: window.location.origin + window.location.pathname
         }
     });
@@ -43,32 +40,18 @@ async function checkUserSession() {
         document.getElementById('logout-btn').style.display = 'block';
         document.getElementById('nav-create').style.display = 'block';
         document.getElementById('nav-teams').style.display = 'block';
-        
-        // Premium-Status aus der "profiles" Tabelle checken
-        checkPremiumStatus(currentUser.id);
+        loadMyTeams();
     }
 }
 
-async function checkPremiumStatus(userId) {
-    const { data, error } = await _supabase
-        .from('profiles')
-        .select('is_premium')
-        .eq('id', userId)
-        .single();
-        
-    if (data && data.is_premium) {
-        isPremiumUser = true;
-        document.getElementById('premium-lock').style.display = 'none';
-        document.getElementById('team-manager-ui').style.display = 'block';
-    }
-}
-
-// === TURNIER LOGIK (ÖFFENTLICH) ===
+// === TURNIER LOGIK ===
 async function saveTournament() {
     if (!currentUser) return alert("Du musst eingeloggt sein!");
     
     const name = document.getElementById('t-name').value;
     const mode = document.getElementById('t-mode').value;
+
+    if(!name) return alert("Bitte gib einen Turniernamen ein!");
 
     const { data, error } = await _supabase
         .from('tournaments')
@@ -101,12 +84,12 @@ async function loadTournaments() {
     }
 }
 
-// === TEAM LOGIK (PREMIUM) ===
+// === TEAM LOGIK ===
 async function createTeam() {
-    if (!isPremiumUser) return alert("PRO Feature benötigt!");
+    if (!currentUser) return alert("Bitte logge dich ein!");
     
     const teamName = document.getElementById('team-name').value;
-    if(!teamName) return;
+    if(!teamName) return alert("Bitte gib einen Teamnamen ein!");
 
     const { data, error } = await _supabase
         .from('teams')
