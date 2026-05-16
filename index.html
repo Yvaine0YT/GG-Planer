@@ -9,11 +9,12 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2>RL Planner</h2>
+        <h2 id="logo-title">RL Planner</h2>
         <nav>
             <button onclick="showSection('dashboard')">Alle Turniere 🌐</button>
             <button id="nav-create" onclick="showSection('create')" style="display:none;">Turnier erstellen 🏆</button>
             <button id="nav-teams" onclick="showSection('teams')" style="display:none;">Mein Team 🚗</button>
+            <button id="nav-profile" onclick="showSection('profile')" style="display:none;">Mein Profil 👤</button>
         </nav>
         <div id="auth-section">
             <button id="login-btn" class="action-btn" onclick="loginWithDiscord()">Mit Discord anmelden</button>
@@ -22,6 +23,8 @@
     </div>
 
     <main class="content">
+        <div id="status-message" class="status-popup"></div>
+
         <section id="dashboard" class="active">
             <h1>Aktive Rocket League Turniere</h1>
             <div id="tournament-list" class="grid"></div>
@@ -32,9 +35,9 @@
             <div class="form-group">
                 <input type="text" id="t-name" placeholder="Name des Turniers">
                 <select id="t-mode">
-                    <option value="1v1">1 vs 1</option>
-                    <option value="2v2">2 vs 2</option>
-                    <option value="3v3">3 vs 3</option>
+                    <option value="1v1">1 vs 1 (Solo)</option>
+                    <option value="2v2">2 vs 2 (Duos)</option>
+                    <option value="3v3">3 vs 3 (Standard)</option>
                 </select>
                 <button class="action-btn" onclick="saveTournament()">Turnier veröffentlichen</button>
             </div>
@@ -48,6 +51,26 @@
             </div>
             <h2>Deine Teams</h2>
             <ul id="my-teams-list"></ul>
+        </section>
+
+        <section id="profile">
+            <h1>Dein Profil</h1>
+            <div class="profile-card">
+                <img id="profile-avatar" src="" alt="Avatar" style="width:100px; height:100px; border-radius:50%; display:none; border: 2px solid var(--accent);">
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Anzeigename:</label><br>
+                    <input type="text" id="profile-username" placeholder="Dein Name">
+                </div>
+                <div class="form-group">
+                    <label>Rocket League Tracker Daten (Wichtig für Turniere):</label><br>
+                    <select id="profile-platform">
+                        <option value="epic">Epic Games</option>
+                        <option value="steam">Steam</option>
+                    </select>
+                    <input type="text" id="profile-gaming-name" placeholder="Epic/Steam Username">
+                </div>
+                <button class="action-btn" onclick="updateProfile()">Profil speichern</button>
+            </div>
         </section>
     </main>
 
