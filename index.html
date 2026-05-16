@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorqueTerror RL Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>RL Planner</h2>
+        <nav>
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('create')">Neues Turnier</button>
+            <button class="premium-btn" onclick="showSection('premium')">PRO Features ⚡</button>
+        </nav>
+        <div id="auth-status">
+            <button id="login-btn" onclick="login()">Login mit Discord</button>
+        </div>
+    </div>
+
+    <main class="content">
+        <!-- Dashboard -->
+        <section id="dashboard" class="active">
+            <h1>Deine Turniere</h1>
+            <div id="tournament-list" class="grid"></div>
+        </section>
+
+        <!-- Turnier Erstellen -->
+        <section id="create">
+            <h1>Turnier erstellen</h1>
+            <div class="form-group">
+                <input type="text" id="t-name" placeholder="Name des Turniers">
+                <select id="t-mode">
+                    <option value="1v1">1 vs 1</option>
+                    <option value="2v2">2 vs 2</option>
+                    <option value="3v3">3 vs 3</option>
+                </select>
+                <button class="action-btn" onclick="saveTournament()">Speichern & Starten</button>
+            </div>
+        </section>
+
+        <!-- Premium Sektion -->
+        <section id="premium">
+            <h1>Werde PRO Mitglied</h1>
+            <p>Schalte Team-Logos, automatische Replay-Analyse und werbefreie Brackets frei.</p>
+            <button class="buy-btn" onclick="startCheckout()">Jetzt für 4,99€ freischalten</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
