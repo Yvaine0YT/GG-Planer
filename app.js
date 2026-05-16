@@ -7,7 +7,17 @@ let myProfileData = null;
 
 window.onload = async function() {
     await checkUserSession();
+    
+    // Erstes Laden der Turniere beim Starten der Seite
     loadTournaments();
+    
+    // AUTOMATISCHER REFRESH: Läuft alle 5000 Millisekunden (5 Sekunden) im Hintergrund
+    setInterval(function() {
+        loadTournaments();
+        if (currentUser) {
+            loadMyTeams(); // Aktualisiert auch die Teams, falls sich da was ändert
+        }
+    }, 5000);
 };
 
 function showSection(id) {
