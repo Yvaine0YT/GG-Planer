@@ -67,3 +67,55 @@ input, select {
 
 .action-btn { background: var(--accent); border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer; }
 .buy-btn { background: var(--premium); border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; }
+
+/* Status Popup */
+.status-popup {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Teilnehmer Box in der Turnier Karte */
+.participant-box {
+    margin-top: 15px;
+    background: #1f2532;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.participant-box h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.participant-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.participant-box li {
+    padding: 3px 0;
+    border-bottom: 1px solid #2a3244;
+}
+
+.profile-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #ccc;
+}
