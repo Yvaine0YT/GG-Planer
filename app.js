@@ -1,4 +1,4 @@
-const _supabase = supabase.createClient('DEINE_SUPABASE_URL', 'DEIN_ANON_KEY');
+const _supabase = supabase.createClient('https://jkooajqvdgqzwklmfbxv.supabase.co/rest/v1/', 'sb_publishable_COo144VrJvkkyvNSzMD6pA_9qRgCkg9');
 
 // Sektionen umschalten
 function showSection(id) {
