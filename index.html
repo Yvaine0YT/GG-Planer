@@ -14,7 +14,6 @@
             <button onclick="showSection('dashboard')">Alle Turniere 🌐</button>
             <button id="nav-create" onclick="showSection('create')" style="display:none;">Turnier erstellen 🏆</button>
             <button id="nav-teams" onclick="showSection('teams')" style="display:none;">Mein Team 🚗</button>
-            <button class="premium-btn" onclick="showSection('premium')">PRO Features ⚡</button>
         </nav>
         <div id="auth-section">
             <button id="login-btn" class="action-btn" onclick="loginWithDiscord()">Mit Discord anmelden</button>
@@ -43,23 +42,12 @@
 
         <section id="teams">
             <h1>Mein Team verwalten</h1>
-            <div id="premium-lock" style="display: block;">
-                <p>⚠️ Team-Erstellung ist ein **PRO-Feature**. Schalte es in der PRO-Sektion frei!</p>
+            <div class="form-group">
+                <input type="text" id="team-name" placeholder="Team Name (z.B. Nova Esports)">
+                <button class="action-btn" onclick="createTeam()">Team erstellen</button>
             </div>
-            <div id="team-manager-ui" style="display: none;">
-                <div class="form-group">
-                    <input type="text" id="team-name" placeholder="Team Name (z.B. Nova Esports)">
-                    <button class="action-btn" onclick="createTeam()">Team erstellen</button>
-                </div>
-                <h2>Eingetragene Teams</h2>
-                <ul id="my-teams-list"></ul>
-            </div>
-        </section>
-
-        <section id="premium">
-            <h1>Werde JAY / TorqueTerror PRO Mitglied ⚡</h1>
-            <p>Schalte die Erstellung von Teams, Custom-Branding und unbegrenzte Turnierbäume frei.</p>
-            <button class="buy-btn" onclick="window.open('DEIN_STRIPE_PAYMENT_LINK', '_blank')">Jetzt für 4,99€ freischalten</button>
+            <h2>Deine Teams</h2>
+            <ul id="my-teams-list"></ul>
         </section>
     </main>
 
