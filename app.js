@@ -1,4 +1,4 @@
-const _supabase = supabase.createClient('https://jkooajqvdgqzwklmfbxv.supabase.co/rest/v1/', 'sb_publishable_COo144VrJvkkyvNSzMD6pA_9qRgCkg9');
+const _supabase = supabase.createClient('https://jkooajqvdgqzwklmfbxv.supabase.co', 'sb_publishable_COo144VrJvkkyvNSzMD6pA_9qRgCkg9');
 
 // Sektionen umschalten
 function showSection(id) {
